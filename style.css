@@ -1,11 +1,11 @@
 *{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 body{background-color: #0f0f0f;}
 @font-face {
-    font-family: 'title'; src: url('fonts/font1.ttf');
+    font-family: 'title'; src: url('../fonts/font1.ttf');
 }
 @font-face {
     font-family: 'title2';
-    src: url('fonts/font2.otf');
+    src: url('../fonts/font2.otf');
 }
 #title{
     font-family: 'title';
