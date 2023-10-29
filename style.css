@@ -13,10 +13,6 @@ body{background-color: #0f0f0f;}
     color: #9900ff;
     transition: 0.7s all;
 }
-#title:hover{
-    letter-spacing: 5px;
-
-}
 #title-hr{
     width: 700px;
     border: solid;
