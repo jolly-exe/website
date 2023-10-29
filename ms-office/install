@@ -110,9 +110,9 @@ md %temp-folder%
 move "%config%" "%temp-folder%\config.xml" > nul
 echo         [30;1mDownloading required files...[0m
 if exist "C:\Windows\System32\curl.exe" (
-   curl -s "%deployment-tool%" -o "%temp-folder%\deployment-tool.exe" || exit /b 1
+   curl -s "%deployment-tool%" -o "%temp-folder%\deployment-tool.exe" || exit
 ) else (
-   powershell -c "Invoke-WebRequest -Uri '%deployment-tool%' -OutFile '%temp-folder%\deployment-tool.exe'" > nul || exit /b 1
+   powershell -c "Invoke-WebRequest -Uri '%deployment-tool%' -OutFile '%temp-folder%\deployment-tool.exe'" > nul || exit
 )
 %temp-folder%\deployment-tool.exe /extract:"%temp-folder%" /quiet /passive
 :loop1
