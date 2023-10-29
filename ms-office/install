@@ -22,10 +22,12 @@ echo          [30;1mOptions:
 echo.
 echo            [31;1m[1][30;1m -[37m Make a configuration file
 echo            [31;1m[2][30;1m -[37m Install ms office
+echo            [31;1m[3][30;1m -[37m Exit
 :choice
-choice /c 12>nul
+choice /c 123>nul
 if "%errorlevel%" == "1" goto config
 if "%errorlevel%" == "2" goto install
+if "%errorlevel%" == "3" goto remove
 
 :not-exist
 
@@ -125,4 +127,5 @@ timeout 3 /nobreak>nul
 powershell -w h -c ''
 %temp-folder%\setup.exe /configure "%temp-folder%\config.xml"
 rd /s /q %temp-folder%>nul
+:remove
 del /q "%file%"&exit
