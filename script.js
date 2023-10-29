@@ -8,3 +8,8 @@ function download(url, fileName) {
         link.click();
       })
   }
+function fn1(){
+  var url = new URL(window.location.href)
+  var test = url.searchParams.get('text');
+  alert("text: " + test);
+}

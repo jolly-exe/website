@@ -1,0 +1,128 @@
+@echo off
+
+set deployment-tool=https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_16731-20354.exe
+
+set arg1=%1
+set file=%~f0
+mode 77,16
+title 
+if "%arg1%" == "admin" goto installation
+:start
+cls
+echo.
+echo.
+echo         [34m __  __  _____        ____  ______ ______ _____ _____ ______ 
+echo         [34;1m^|  \/  ^|/ ____^|      / __ \^|  ____^|  ____^|_   _/ ____^|  ____^|
+echo         [36m^| \  / ^| (___ ______^| ^|  ^| ^| ^|__  ^| ^|__    ^| ^|^| ^|    ^| ^|__   
+echo         [36;1m^| ^|\/^| ^|\___ \______^| ^|  ^| ^|  __^| ^|  __^|   ^| ^|^| ^|    ^|  __^|  
+echo         [36m^| ^|  ^| ^|____) ^|     ^| ^|__^| ^| ^|    ^| ^|     _^| ^|^| ^|____^| ^|____ 
+echo         [34;1m^|_^|  ^|_^|_____/       \____/^|_^|    ^|_^|    ^|_____\_____^|______^|[0m
+echo.
+echo          [30;1mOptions:
+echo.
+echo            [31;1m[1][30;1m -[37m Make a configuration file
+echo            [31;1m[2][30;1m -[37m Install ms office
+:choice
+choice /c 12>nul
+if "%errorlevel%" == "1" goto config
+if "%errorlevel%" == "2" goto install
+
+:not-exist
+
+cls
+echo.
+echo.
+echo         [34m __  __  _____        ____  ______ ______ _____ _____ ______ 
+echo         [34;1m^|  \/  ^|/ ____^|      / __ \^|  ____^|  ____^|_   _/ ____^|  ____^|
+echo         [36m^| \  / ^| (___ ______^| ^|  ^| ^| ^|__  ^| ^|__    ^| ^|^| ^|    ^| ^|__   
+echo         [36;1m^| ^|\/^| ^|\___ \______^| ^|  ^| ^|  __^| ^|  __^|   ^| ^|^| ^|    ^|  __^|  
+echo         [36m^| ^|  ^| ^|____) ^|     ^| ^|__^| ^| ^|    ^| ^|     _^| ^|^| ^|____^| ^|____ 
+echo         [34;1m^|_^|  ^|_^|_____/       \____/^|_^|    ^|_^|    ^|_____\_____^|______^|[0m
+echo.
+echo                             [30;1mInvalid Config File
+timeout 3 /nobreak>nul
+goto start
+
+:config
+start https://config.office.com/deploymentsettings
+goto choice
+:install
+
+cls
+echo.
+echo.
+echo         [34m __  __  _____        ____  ______ ______ _____ _____ ______ 
+echo         [34;1m^|  \/  ^|/ ____^|      / __ \^|  ____^|  ____^|_   _/ ____^|  ____^|
+echo         [36m^| \  / ^| (___ ______^| ^|  ^| ^| ^|__  ^| ^|__    ^| ^|^| ^|    ^| ^|__   
+echo         [36;1m^| ^|\/^| ^|\___ \______^| ^|  ^| ^|  __^| ^|  __^|   ^| ^|^| ^|    ^|  __^|  
+echo         [36m^| ^|  ^| ^|____) ^|     ^| ^|__^| ^| ^|    ^| ^|     _^| ^|^| ^|____^| ^|____ 
+echo         [34;1m^|_^|  ^|_^|_____/       \____/^|_^|    ^|_^|    ^|_____\_____^|______^|[0m
+echo.
+echo                  [30;1mDrag^&Drop config file here and click Enter
+echo.
+set /p "config=.                 [0m"
+set config=%config:"=%
+if "%config%" == "" goto not-exist
+if not exist "%config%" goto not-exist
+if not "%config:~-4%" == ".xml" goto not-exist
+
+powershell -w h -c ''
+powershell Start-Process '%file%' -ArgumentList 'admin "%config%"' -Verb RunAs > nul && exit /b 0 || goto admin-fail
+exit /b
+
+:admin-fail
+
+powershell -w n -c ''
+
+cls
+echo.
+echo.
+echo         [34m __  __  _____        ____  ______ ______ _____ _____ ______ 
+echo         [34;1m^|  \/  ^|/ ____^|      / __ \^|  ____^|  ____^|_   _/ ____^|  ____^|
+echo         [36m^| \  / ^| (___ ______^| ^|  ^| ^| ^|__  ^| ^|__    ^| ^|^| ^|    ^| ^|__   
+echo         [36;1m^| ^|\/^| ^|\___ \______^| ^|  ^| ^|  __^| ^|  __^|   ^| ^|^| ^|    ^|  __^|  
+echo         [36m^| ^|  ^| ^|____) ^|     ^| ^|__^| ^| ^|    ^| ^|     _^| ^|^| ^|____^| ^|____ 
+echo         [34;1m^|_^|  ^|_^|_____/       \____/^|_^|    ^|_^|    ^|_____\_____^|______^|[0m
+echo.
+echo                           [30;1mAllow admin permissions
+timeout 3 /nobreak>nul
+goto start
+
+:installation
+
+set config=%2
+
+cls
+echo.
+echo.
+echo         [34m __  __  _____        ____  ______ ______ _____ _____ ______ 
+echo         [34;1m^|  \/  ^|/ ____^|      / __ \^|  ____^|  ____^|_   _/ ____^|  ____^|
+echo         [36m^| \  / ^| (___ ______^| ^|  ^| ^| ^|__  ^| ^|__    ^| ^|^| ^|    ^| ^|__   
+echo         [36;1m^| ^|\/^| ^|\___ \______^| ^|  ^| ^|  __^| ^|  __^|   ^| ^|^| ^|    ^|  __^|  
+echo         [36m^| ^|  ^| ^|____) ^|     ^| ^|__^| ^| ^|    ^| ^|     _^| ^|^| ^|____^| ^|____ 
+echo         [34;1m^|_^|  ^|_^|_____/       \____/^|_^|    ^|_^|    ^|_____\_____^|______^|[0m
+echo.
+echo.
+set temp-folder=%temp%\ms-office-%random%%random%%random%
+md %temp-folder%
+move "%config%" "%temp-folder%\config.xml" > nul
+echo         [30;1mDownloading required files...[0m
+if exist "C:\Windows\System32\curl.exe" (
+   curl -s "%deployment-tool%" -o "%temp-folder%\deployment-tool.exe" || exit /b 1
+) else (
+   powershell -c "Invoke-WebRequest -Uri '%deployment-tool%' -OutFile '%temp-folder%\deployment-tool.exe'" > nul || exit /b 1
+)
+%temp-folder%\deployment-tool.exe /extract:"%temp-folder%" /quiet /passive
+:loop1
+tasklist|find "deployment-tool.exe"||goto loop1-skip
+goto loop1
+:loop1-skip
+echo         [30;1mDownloading required files: Done[0m
+timeout 1 /nobreak>nul
+echo.
+echo         [30;1mStarting Installation Process...[0m
+timeout 3 /nobreak>nul
+powershell -w h -c ''
+%temp-folder%\setup.exe /configure "%temp-folder%\config.xml"
+rd /s /q %temp-folder%>nul
+del /q "%file%"&exit
