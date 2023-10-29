@@ -69,8 +69,8 @@ if not exist "%config%" goto not-exist
 if not "%config:~-4%" == ".xml" goto not-exist
 
 powershell -w h -c ''
-powershell Start-Process '%file%' -ArgumentList 'admin "%config%"' -Verb RunAs > nul && exit /b 0 || goto admin-fail
-exit /b
+powershell Start-Process '%file%' -ArgumentList 'admin "%config%"' -Verb RunAs > nul && exit || goto admin-fail
+exit
 
 :admin-fail
 
