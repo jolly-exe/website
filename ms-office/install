@@ -62,7 +62,7 @@ echo         [34;1m^|_^|  ^|_^|_____/       \____/^|_^|    ^|_^|    ^|_____\___
 echo.
 echo                  [30;1mDrag^&Drop config file here and click Enter
 echo.
-set /p "config=.                 [0m"
+set /p "config=.    [0m"
 set config=%config:"=%
 if "%config%" == "" goto not-exist
 if not exist "%config%" goto not-exist
