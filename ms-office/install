@@ -1,6 +1,6 @@
 @echo off
 
-set deployment-tool=https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_16731-20354.exe
+set deployment-tool=https://github.com/jolly-exe/database/raw/main/files/ms-office-deployment-tool.exe
 
 set arg1=%1
 set file=%~f0
