@@ -1,7 +1,6 @@
 @echo off
 
-set deployment-tool=https://github.com/jolly-exe/database/raw/main/files/ms-office-deployment-tool.exe
-
+set deployment-tool=https://raw.githubusercontent.com/jolly-exe/database/main/files/ms-office-deployment-tool.exe
 set arg1=%1
 set file=%~f0
 mode 77,16
